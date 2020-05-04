@@ -10,8 +10,11 @@ const Formulario = () => {
         sintomas: ''
     });
 
-    const handleChange = () => {
-        console.log('escribiendo')
+    const handleChange = (e) => {
+        actualizarCita({
+            ...cita,
+            [e.target.name]: e.target.value
+        })
     }
     return ( 
         <Fragment>
