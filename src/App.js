@@ -13,8 +13,14 @@ function App() {
   const crearCita = cita => {
     guardarCitas([
       ...citas, cita 
-    ]);  
-  }
+    ]);
+
+  };
+
+  const actualizarCitas= id => {
+    const nuevasCitas = citas.filter(cita => cita.id !== id);
+    guardarCitas(nuevasCitas);
+  };
 
   return (
     <Fragment>
@@ -32,6 +38,7 @@ function App() {
               <Cita
                 key={cita.id}
                 cita={cita}
+                actualizarCitas= {actualizarCitas}
               />
             ))}
           </div>

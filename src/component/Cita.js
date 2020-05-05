@@ -1,13 +1,19 @@
 import React from 'react';
 
-const Citas = (props) => 
+const Citas = ({cita, actualizarCitas}) => 
     ( 
         <div className="cita">
-            <p>Mascota: <span>{ props.cita.mascota }</span></p>
-            <p>Dueño: <span>{ props.cita.propietario }</span></p>
-            <p>Fecha: <span>{ props.cita.fecha }</span></p>
-            <p>Hora: <span>{ props.cita.hora }</span></p>
-            <p>Sintomas: <span>{ props.cita.sintomas }</span></p>
+            <p>Mascota: <span>{ cita.mascota }</span></p>
+            <p>Dueño: <span>{ cita.propietario }</span></p>
+            <p>Fecha: <span>{ cita.fecha }</span></p>
+            <p>Hora: <span>{ cita.hora }</span></p>
+            <p>Sintomas: <span>{ cita.sintomas }</span></p>
+
+            <button 
+                className="button eliminar u-full-width"
+                    onClick={ () => actualizarCitas(cita.id)}
+                >Borrar Cita &times;
+            </button>
 
         </div>
     );
