@@ -1,22 +1,38 @@
-import React, {Fragment, useState} from "react";
-import Formulario from './component/Formulario'
-import Cita from './component/Cita'
-
+import React, {Fragment, useState, useEffect} from "react";
+import Formulario from './component/Formulario';
+import Cita from './component/Cita';
 import './App.css';
 
 function App() {
 
+  //Citas en localStorage
+  let citasIniciales = JSON.parse(localStorage.getItem('citas'));
+  if(!citasIniciales) {
+    citasIniciales = [];
+  }
+
   //Arreglo de citas
-  const [citas, guardarCitas] = useState([]);
+  const [citas, guardarCitas] = useState(citasIniciales);
+
+  //Use Efect para realizar ciertas operaciones cuando cambia el state
+  useEffect(() => {
+    let citasIniciales = JSON.parse(localStorage.getItem('citas'));
+
+    if(citasIniciales) {
+      localStorage.setItem('citas', JSON.stringify(citas))
+    } else {
+      localStorage.setItem('citas', JSON.stringify([]))
+    }
+  }, [citas] );
 
   //funcion que cree citaS actuales y cree la nueva
   const crearCita = cita => {
     guardarCitas([
       ...citas, cita 
     ]);
-
   };
 
+  //Elimina las citas por el id
   const actualizarCitas= id => {
     const nuevasCitas = citas.filter(cita => cita.id !== id);
     guardarCitas(nuevasCitas);
